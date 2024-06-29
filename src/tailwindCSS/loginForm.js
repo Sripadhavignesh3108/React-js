@@ -1,13 +1,26 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import "../App.css";
 import { LockClosedIcon } from "@heroicons/react/solid";
+let formData = [];
 export default function LoginForm() {
+  let [dupCheck, updatedDupCheck] = useState(true);
   const emailData = useRef();
   const passwordData = useRef();
   let FormSubmit = (e) => {
+    updatedDupCheck((dupCheck = true));
     e.preventDefault();
-    console.log(emailData.current.value);
-    console.log(passwordData.current.value);
+    let obj = {};
+    obj["email"] = emailData.current.value;
+    obj["password"] = passwordData.current.value;
+    formData.map((eachObject) => {
+      if (eachObject.email === obj.email) {
+        updatedDupCheck((dupCheck = false));
+      }
+    });
+    if (dupCheck) {
+      formData.push(obj);
+      localStorage.setItem("loginData", JSON.stringify(formData));
+    }
   };
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-10">
@@ -30,7 +43,7 @@ export default function LoginForm() {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6">
+        <form className="mt-8 space-y-6" onSubmit={FormSubmit}>
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="mb-3">
@@ -108,7 +121,6 @@ export default function LoginForm() {
                 rounded-md text-white bg-indigo-600 hover:bg-indigo-700
                 focus:outline-none focus:ring-2 focus:ring-offset-2
                 focus:ring-indigo-500"
-              onClick={FormSubmit}
             >
               <span className="absolute left-0 inset-y-0 flex items-center pl-3">
                 <LockClosedIcon
@@ -119,6 +131,11 @@ export default function LoginForm() {
               Sign in
             </button>
           </div>
+          {!dupCheck ? (
+            <h1 style={{ color: "red", textAlign: "center", fontSize: "23px" }}>
+              user already Exist
+            </h1>
+          ) : null}
         </form>
       </div>
     </div>
