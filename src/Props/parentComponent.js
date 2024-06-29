@@ -1,11 +1,11 @@
 import Child from "./childComponent";
 
-export default function Parent()
-{
-    let styles={color:"red"}
-    return(
-        <>
-        <Child s={styles}></Child>
-        </>
-    )
+export default function Parent(prop) {
+  let styles = { color: "red" };
+  return (
+    <>
+      <h1>children</h1>
+      <Child s={styles}></Child>
+    </>
+  );
 }
