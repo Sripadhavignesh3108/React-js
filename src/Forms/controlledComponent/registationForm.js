@@ -1,30 +1,22 @@
 import { useRef, useState } from "react";
-import "../App.css";
 import { LockClosedIcon } from "@heroicons/react/solid";
-let formData = [];
+localStorage.clear();
 export default function LoginForm() {
-  let [dupCheck, updatedDupCheck] = useState(true);
-  const emailData = useRef();
-  const passwordData = useRef();
-  let FormSubmit = (e) => {
-    updatedDupCheck((dupCheck = true));
-    e.preventDefault();
-    let obj = {};
-    obj["email"] = emailData.current.value;
-    obj["password"] = passwordData.current.value;
-    formData.map((eachObject) => {
-      if (eachObject.email === obj.email) {
-        updatedDupCheck((dupCheck = false));
-      }
-    });
-    if (dupCheck) {
-      formData.push(obj);
-      localStorage.setItem("loginData", JSON.stringify(formData));
-    }
-  };
+  let [formHandler, updateFormHandler] = useState({
+    emailGetter: "",
+    passwordGetter: "",
+  });
+  function emailHandler(event) {
+    updateFormHandler((formHandler.emailGetter = event.target.value));
+    console.log(formHandler.emailGetter);
+  }
+  // function passwordHandler(event) {
+  //   updateFormHandler((formHandler.passwordGetter = event.target.value));
+  //   console.log(formHandler.passwordGetter);
+  // }
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 mt-10">
-      <div className="max-w-md w-full space-y-8 border-4 p-10 border-blue-500">
+      <div className="ma  x-w-md  space-y-8 border-4 p-10 border-blue-500">
         <div>
           <img
             className="mx-auto h-12 w-auto"
@@ -43,7 +35,7 @@ export default function LoginForm() {
             </a>
           </p>
         </div>
-        <form className="mt-8 space-y-6" onSubmit={FormSubmit}>
+        <form className="mt-8 space-y-6">
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             <div className="mb-3">
@@ -56,7 +48,7 @@ export default function LoginForm() {
                 type="email"
                 autoComplete="email"
                 required
-                ref={emailData}
+                onChange={emailHandler}
                 className="appearance-none rounded-none relative block
                   w-full px-3 py-2 border border-gray-300
                   placeholder-gray-500 text-gray-900 rounded-t-md
@@ -75,7 +67,7 @@ export default function LoginForm() {
                 type="password"
                 autoComplete="current-password"
                 required
-                ref={passwordData}
+                // onChange={passwordHandler}
                 className="appearance-none rounded-none relative block
                   w-full px-3 py-2 border border-gray-300
                   placeholder-gray-500 text-gray-900 rounded-b-md
@@ -131,11 +123,6 @@ export default function LoginForm() {
               Sign in
             </button>
           </div>
-          {!dupCheck ? (
-            <h1 style={{ color: "red", textAlign: "center", fontSize: "23px" }}>
-              user already Exist
-            </h1>
-          ) : null}
         </form>
       </div>
     </div>
