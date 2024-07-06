@@ -1,18 +1,19 @@
 import React from "react";
 import { DNA } from "react-loader-spinner";
 
-function DNAspinner() {
+function DnaSpinner() {
   return (
-    <div
-      style={{
-        position: "absolute",
-        top: "45%",
-        left: "45%",
-      }}
-    >
-      <DNA visible={true} height="90" width="90" />
+    <div>
+      <DNA
+        visible={true}
+        height="90"
+        width="90"
+        ariaLabel="dna-loading"
+        wrapperStyle={{ position: "absolute", top: "42%", left: "45%" }}
+        wrapperClass="dna-wrapper"
+      />
     </div>
   );
 }
 
-export default DNAspinner;
+export default DnaSpinner;
