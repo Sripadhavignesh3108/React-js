@@ -1,9 +1,9 @@
 import "./App.css";
-import RecipeReviewCard from "./ReactTasks/ChangingRecipe/RecipeCards";
+import MainNavigationPage from "./ReactTasks/Navigation/MainNavigationPage/MainNavigationPage";
 function App() {
   return (
     <>
-      <RecipeReviewCard />
+      <MainNavigationPage />
     </>
   );
 }

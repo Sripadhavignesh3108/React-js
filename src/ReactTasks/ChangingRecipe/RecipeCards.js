@@ -70,13 +70,15 @@ export default function RecipeReviewCard(prop) {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexWrap: "wrap",
             height: "100vh",
+            gap: "30px",
           }}
         >
           <Button
             color="primary"
             size="large"
-            style={{ marginRight: "50px", border: "2px solid #008BD6" }}
+            style={{ border: "2px solid #008BD6" }}
             onClick={previousHandler}
           >
             Previous
@@ -166,7 +168,7 @@ export default function RecipeReviewCard(prop) {
           <Button
             color="primary"
             size="large"
-            style={{ marginLeft: "50px", border: "2px solid #008BD6" }}
+            style={{ border: "2px solid #008BD6" }}
             onClick={nextHandler}
           >
             Next Recipe
