@@ -1,5 +1,5 @@
 import "./App.css";
-import MainNavigationPage from "./ReactTasks/Navigation/MainNavigationPage/MainNavigationPage";
+import MainNavigationPage from "./ReactTasks/Navigation/StaticNavigation/StaticNavigation";
 function App() {
   return (
     <>
