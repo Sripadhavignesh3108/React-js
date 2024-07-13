@@ -1,6 +1,3 @@
-import { colors } from "@mui/material";
-import React, { useEffect } from "react";
-
 function DisplayTodo(prop) {
   let resultState = prop.data;
 
@@ -42,7 +39,7 @@ function DisplayTodo(prop) {
                   onClick={() => {
                     DeleteHandler("mrng", index);
                   }}
-                  style={buttonStyles}
+                  style={{ backgroundColor: "none", width: "none" }}
                   id={"mrng" + index + "button"}
                 >
                   Complete

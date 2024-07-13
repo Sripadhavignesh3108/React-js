@@ -12,31 +12,39 @@ let dataObject = {
 };
 
 let reducerFunction = (state, action) => {
-  let newState = { ...state };
   switch (action.time) {
     case "morning":
-      if (!state.todos.morning.includes(action.todoValue)) {
-        newState.todos.morning = [...newState.todos.morning, action.todoValue];
-      }
-      return newState;
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          morning: [...state.todos.morning, action.todoValue],
+        },
+      };
     case "afternoon":
-      if (!state.todos.afternoon.includes(action.todoValue)) {
-        newState.todos.afternoon = [
-          ...newState.todos.afternoon,
-          action.todoValue,
-        ];
-      }
-      return newState;
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          afternoon: [...state.todos.afternoon, action.todoValue],
+        },
+      };
     case "evening":
-      if (!state.todos.evening.includes(action.todoValue)) {
-        newState.todos.evening = [...newState.todos.evening, action.todoValue];
-      }
-      return newState;
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          evening: [...state.todos.evening, action.todoValue],
+        },
+      };
     case "night":
-      if (!state.todos.night.includes(action.todoValue)) {
-        newState.todos.night = [...newState.todos.night, action.todoValue];
-      }
-      return newState;
+      return {
+        ...state,
+        todos: {
+          ...state.todos,
+          night: [...state.todos.night, action.todoValue],
+        },
+      };
     default:
       return state;
   }
