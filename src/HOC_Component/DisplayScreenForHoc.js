@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
+import ConsoleLoggingHOC from "./ConsoleLoggingHOC";
 
 function DisplayScreenForHoc(props) {
-  return (
-    <div>{props.name}</div>
-  )
+  console.log(props);
+  return <h1>{props.name}</h1>;
 }
-
-export default DisplayScreenForHoc
+export default ConsoleLoggingHOC(DisplayScreenForHoc);

@@ -1,14 +1,9 @@
-import { createContext, useState } from "react";
 import "./App.css";
-import SecondContext from "./contextApiTest/secondContext";
-export let contextValue = createContext();
+import DisplayScreenForHoc from "./HOC_Component/DisplayScreenForHoc";
 function App() {
-  const [stateValue, updateState] = useState("hello");
   return (
     <>
-      <contextValue.Provider value={stateValue}>
-        <SecondContext />
-      </contextValue.Provider>
+      <DisplayScreenForHoc />
     </>
   );
 }
