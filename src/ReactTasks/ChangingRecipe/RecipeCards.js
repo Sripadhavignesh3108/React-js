@@ -89,7 +89,7 @@ export default function RecipeReviewCard(prop) {
           >
             <CardMedia
               component="img"
-              height="194"
+              height="254"
               image={obj[0].image}
               alt="Recipe dish"
             />

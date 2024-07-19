@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Col, Form, Row } from "react-bootstrap";
 import { BrowserRouter, Link, Route, Router, Routes } from "react-router-dom";
 import RecipeReviewCard from "../../ChangingRecipe/RecipeCards";
 import RecipeData from "../../RecipeData/recipeData";
-function MainNavigationPage() {
+import NewCompo from "./newCompo";
+export default function MainNavigationPage() {
   return (
     <div>
       <nav
@@ -15,20 +15,7 @@ function MainNavigationPage() {
           justifyContent: "space-between",
         }}
       >
-        <div style={{ display: "flex", gap: "10px", marginLeft: "10px" }}>
-          <Link to={"/"}>
-            <Button variant="outline-primary">Home</Button>
-          </Link>
-          <Link to={"/products"}>
-            <Button variant="outline-primary">Recipe Cards</Button>
-          </Link>
-          <Link to={"about"}>
-            {" "}
-            <Button variant="outline-primary">Recipe Table</Button>
-          </Link>
-          <Button variant="outline-primary">Contact us</Button>
-        </div>
-        <Form inline>
+        {/* <Form inline>
           <Row>
             <Col xs="auto">
               <Form.Control
@@ -38,18 +25,17 @@ function MainNavigationPage() {
               />
             </Col>
             <Col xs="auto">
-              <Button type="submit">Submit</Button>
+              <button type="submit">Submit</button>
             </Col>
           </Row>
-        </Form>
-      </nav>
+        </Form> */}
+      </nav>{" "}
       <Routes>
+        <Route path="/" element={<NewCompo />}></Route>
         <Route path="/products" Component={RecipeReviewCard} />
         <Route path="/about" element={<RecipeData />} />
-        <Route path="/" element={<RecipeData />} />
+        <Route path="/recipe" element={<RecipeData />} />
       </Routes>
     </div>
   );
 }
-
-export default MainNavigationPage;

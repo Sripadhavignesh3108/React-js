@@ -1,9 +1,14 @@
+import { createContext, useState } from "react";
 import "./App.css";
-import ReducerTodos from "./ReactTasks/useReducer-Todo's/useReducerTodos";
+import SecondContext from "./contextApiTest/secondContext";
+export let contextValue = createContext();
 function App() {
+  const [stateValue, updateState] = useState("hello");
   return (
     <>
-      <ReducerTodos />
+      <contextValue.Provider value={stateValue}>
+        <SecondContext />
+      </contextValue.Provider>
     </>
   );
 }
