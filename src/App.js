@@ -1,9 +1,9 @@
 import "./App.css";
-import DisplayScreenForHoc from "./HOC_Component/DisplayScreenForHoc";
+import CatCardsShow from "./ReactTasks/CatDisplayTask/catCardsShow";
 function App() {
   return (
     <>
-      <DisplayScreenForHoc />
+      <CatCardsShow />
     </>
   );
 }
