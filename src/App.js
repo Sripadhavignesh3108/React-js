@@ -6,14 +6,9 @@ import NestedNav from "./ReactTasks/Navigation/NestedNavigations/NestedNav";
 import RecipeHomeScreen from "./ReactTasks/GlobalStateManagement/RecipeState/RecipeHomeScreen";
 import RecipeScreen from "./ReactTasks/GlobalStateManagement/OtherScreens/RecipeScreen";
 function App() {
-  let [a, ab] = useState("hello");
-  let handler = () => {
-    ab("mounika");
-  };
   return (
     <>
       <RecipeHomeScreen />
-      {/* <RecipeScreen /> */}
     </>
   );
 }

@@ -8,7 +8,9 @@ export default function RecipeScreen() {
   let { ResultData, formData } = contextDataPrarent;
 
   let displayCardsData = ResultData.filter((each) => {
-    return each.name.toLowerCase().includes(formData.toLowerCase());
+    if (formData.length !== 0) {
+      return each.name.toLowerCase().includes(formData.toLowerCase());
+    }
   });
   console.log(displayCardsData);
   return (
