@@ -1,9 +1,9 @@
 import "./App.css";
-import CatCardsShow from "./ReactTasks/CatDisplayTask/catCardsShow";
+import CountrysMainPage from "./ReactTasks/country_DropList/CountrysMainPage";
 function App() {
   return (
     <>
-      <CatCardsShow />
+      <CountrysMainPage />
     </>
   );
 }
