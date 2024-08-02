@@ -1,16 +1,18 @@
 import "./countryData.css";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import axios from "axios";
-import VortexSpinner from "../../BasicComponents/CustomSpinners/VortexSpinner";
 import { ContextDataForCountry } from "./CountrysMainPage";
+import { useNavigate } from "react-router-dom";
 function CountriesDropList() {
   const refValue = useRef();
+  const navigate = useNavigate();
   let [nameArray, updateNameArray] = useState([]);
   let [searchedData, updateSearch] = useState([]);
   let updateCountryName = useContext(ContextDataForCountry);
-  const { name, updateName } = updateCountryName;
+  const { countryName, updateName } = updateCountryName;
   const CountryGetter = (data) => {
-    updateName(data);
+    updateName({ ...countryName, name: data });
+    navigate("/details");
   };
   useEffect(() => {
     axiosAPI();
@@ -18,6 +20,7 @@ function CountriesDropList() {
   const axiosAPI = async () => {
     let response = await axios.get("https://restcountries.com/v3.1/all");
     updateNameArray(response.data);
+    updateName({ ...countryName, package: response.data });
   };
   const searchHandler = () => {
     updateSearch(
@@ -30,6 +33,7 @@ function CountriesDropList() {
   };
   return (
     <div>
+      <h1 id="title" >COUNTRY FINDER</h1>
       <input
         type="text"
         name="search"
@@ -45,22 +49,23 @@ function CountriesDropList() {
           paddingTop: "20px",
         }}
       >
-        {nameArray.length > 0 ? (
+        {searchedData.length > 0 ? (
           <>
             {searchedData.map((each, index) => {
               return (
                 <>
                   <div
                     className="cardContainer"
-                    onClick={() => CountryGetter(each.name.official)}
+                    onClick={() => CountryGetter(each.area)}
                     key={index}
                   >
                     <img
                       src={each.flags.png}
-                      alt={each.name.official}
+                      alt={each.name.common}
                       width={150}
                     />
-                    <p>{each.name.official}</p>
+                    <p className="cardNames">{each.name.common}</p>
+                    <button>More Info</button>
                   </div>
                 </>
               );
@@ -68,7 +73,25 @@ function CountriesDropList() {
           </>
         ) : (
           <>
-            <VortexSpinner />
+            {nameArray.map((each, index) => {
+              return (
+                <>
+                  <div
+                    className="cardContainer"
+                    onClick={() => CountryGetter(each.area)}
+                    key={index}
+                  >
+                    <img
+                      src={each.flags.png}
+                      alt={each.name.common}
+                      width={150}
+                    />
+                    <p className="cardNames">{each.name.common}</p>
+                    <button>More Info</button>
+                  </div>
+                </>
+              );
+            })}
           </>
         )}
       </div>

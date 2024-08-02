@@ -1,4 +1,27 @@
-/* @tailwind base; */
-/* @tailwind components;
-@tailwind utilities; */
+body{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background: linear-gradient(to top right,white,rgb(134, 225, 255),rgb(82, 197, 255),pink,rgb(255, 32, 173));
+    animation: backGroundAnimation 7s ease infinite;
+    background-size: 400% 400%;
+}
 
+@keyframes backGroundAnimation  {
+    0% {
+        background-position: 0% 50%;
+    }
+    30%{
+        background-position: 100% , 0%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    70%{
+        background-position: 0% 100%;
+    }
+    100%{
+        background-position: 0% 0%;
+    }
+}
