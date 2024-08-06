@@ -15,6 +15,7 @@ export default function RecipeHomeScreen() {
   const [formData, updateForm] = useState("");
   let [ResultData, updateData] = useState([]);
   let [stateCheck, changeState] = useState(false);
+  let [navi, setNavi] = useState(true);
   useEffect(() => {
     async function RecipeDataFromApi() {
       let response = axios("https://dummyjson.com/recipes");
@@ -33,7 +34,10 @@ export default function RecipeHomeScreen() {
     }
   };
   if (stateCheck === true && formData !== "") {
-    navigate("/recipe");
+    setNavi(false);
+    setTimeout(() => {
+      navigate("/recipe");
+    }, 200);
     changeState(false);
   }
   function changeHandler() {
@@ -70,7 +74,7 @@ export default function RecipeHomeScreen() {
                 name="recipe"
                 style={{ width: "350px", fontSize: "16px" }}
                 ref={formDataRef}
-                onChange={changeHandler}
+                onClick={changeHandler}
               />
               <Button
                 variant="outline-primary"
@@ -82,9 +86,24 @@ export default function RecipeHomeScreen() {
             </Form>
           </Container>
         </Navbar>
-        <Routes>
-          <Route path="/recipe" element={<RecipeScreen />} />
-        </Routes>
+        {navi ? (
+          <div
+            style={{
+              height: "80vh",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <h3 style={{ color: "red" }}>
+              Looks like you doesn't Searched anything !
+            </h3>
+          </div>
+        ) : (
+          <Routes>
+            <Route path="/recipe" element={<RecipeScreen />} />
+          </Routes>
+        )}
       </contextData.Provider>
     </div>
   );

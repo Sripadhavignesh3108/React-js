@@ -1,7 +1,6 @@
 import "./otherRecipe.css";
 import React, { useContext } from "react";
 import { contextData } from "../RecipeState/RecipeHomeScreen";
-import DnaSpinner from "../../../BasicComponents/CustomSpinners/DNAspinner";
 
 export default function RecipeScreen() {
   const contextDataPrarent = useContext(contextData);
@@ -12,35 +11,64 @@ export default function RecipeScreen() {
       return each.name.toLowerCase().includes(formData.toLowerCase());
     }
   });
-  console.log(displayCardsData);
+  const hoverHandler = (data) => {
+    let img = document.getElementById("img" + data);
+    img.style.filter = "blur(3px)";
+    document.getElementById("description" + data).style.zIndex = "2";
+  };
+  const LeaveHandler = (data) => {
+    let img = document.getElementById("img" + data);
+    img.style.filter = "blur(0px)";
+    document.getElementById("description" + data).style.zIndex = "0";
+  };
   return (
     <div className="container">
       {displayCardsData.length <= 0 ? (
-        <DnaSpinner />
+        <div
+          style={{
+            height: "80vh",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <h3 style={{ color: "red" }}>No recipe found !</h3>
+        </div>
       ) : (
         displayCardsData.map((obj) => {
           return (
-            <div className="card">
+            <div
+              className="card"
+              onMouseEnter={() => hoverHandler(obj.name)}
+              onMouseLeave={() => LeaveHandler(obj.name)}
+            >
               <img
                 src={obj.image}
                 width={"300px"}
-                style={{ borderRadius: 5 }}
+                style={{ borderRadius: 5, zIndex: "1" }}
                 alt={obj.name}
+                id={"img" + obj.name}
               />
-              <h4>{obj.name}</h4>
-              <p>
-                <b>cusine :</b> {obj.cuisine}
-              </p>
-              <p>
-                <b>ingredients :</b> {obj.ingredients}
-              </p>
-              <p>
-                <b>caloriesPerServing : </b>
-                {obj.caloriesPerServing} cal
-              </p>
-              <p>
-                <b>Rating :</b> {obj.rating} / 5
-              </p>
+              <div
+                style={{ position: "absolute" }}
+                id={"description" + obj.name}
+                className="recipeDiscription"
+              >
+                <h4>{obj.name}</h4>
+                <p>
+                  <b>cusine :</b> {obj.cuisine}
+                </p>
+                <p>
+                  <b>ingredients :</b> {obj.ingredients}
+                </p>
+                <p>
+                  <b>caloriesPerServing : </b>
+                  {obj.caloriesPerServing} cal
+                </p>
+                <p>
+                  <b>Rating :</b> {obj.rating} / 5
+                </p>
+              </div>
             </div>
           );
         })
